@@ -19,4 +19,25 @@ mbti_travel_recommendations = {
     ],
     "ISFP": [
         {"place": "산토리니, 그리스 🇬🇷", "reason": "감각적인 풍경과 조용한 감성이 어우러져 있어요."},
-        {"place": "퀸스타운, 뉴질랜드 🇳🇿", "reason": "자연
+        {"place": "퀸스타운, 뉴질랜드 🇳🇿", "reason": "자연 속에서 자유롭고 평화로운 시간을 보낼 수 있어요."},
+        {"place": "바르셀로나, 스페인 🇪🇸", "reason": "예술적인 도시 분위기와 자유로움이 매력적이에요."}
+    ]
+}
+
+# Streamlit 앱 시작
+st.set_page_config(page_title="MBTI 여행지 추천기", page_icon="🌍")
+
+st.title("✈️ MBTI 여행지 추천기")
+st.markdown("당신의 **MBTI** 유형을 선택하면, 맞춤형 여행지를 추천해드릴게요! 😎")
+
+selected_mbti = st.selectbox("MBTI 유형을 선택하세요:", list(mbti_travel_recommendations.keys()))
+
+if selected_mbti:
+    st.balloons()
+    st.success(f"🎉 {selected_mbti} 유형에게 딱 맞는 여행지를 추천드릴게요!")
+
+    recommendations = mbti_travel_recommendations[selected_mbti]
+    for rec in recommendations:
+        st.markdown(f"### 📍 {rec['place']}")
+        st.write(f"👉 {rec['reason']}")
+        st.markdown("---")
